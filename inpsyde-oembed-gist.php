@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Inpsyde oEmbed Gist
- * Plugin URI:  http://bueltge.de/
+ * Plugin URI:  https://github.com/inpsyde/Inpsyde-oEmbed-Gist
  * Text Domain: oembed_gist
  * Domain Path: /languages
  * Description: Autoembedding of Gists in WordPress via oEmbed
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      Inpsyde GmbH
  * Author URI:  http://inpsyde.com
  * License:     GPLv3
@@ -13,6 +13,7 @@
 
 ! defined( 'ABSPATH' ) and exit;
 
+add_action( 'plugins_loaded', array( 'Fb_Oembed_Gist', 'init' ) );
 /**
  * Class for autoembedding of gists via URL
  * 
@@ -30,13 +31,20 @@ class Fb_Oembed_Gist {
 	 */
 	public static $noscript_string = '';
 	
+	protected static $classobj = NULL;
+	
 	public static function init() {
 		
-		$class = __CLASS__ ;
-		if ( empty( $GLOBALS[ $class ] ) )
-			$GLOBALS[ $class ] = new $class;
+		NULL === self::$classobj and self::$classobj = new self();
+		
+		return self::$classobj;
 	}
 	
+	/**
+	 * Constructor
+	 * 
+	 * @return  void
+	 */
 	public function __construct() {
 		
 		self::$noscript_string = __( 'View the code on', 'oembed_gist' );
@@ -116,4 +124,3 @@ class Fb_Oembed_Gist {
 	}
 	
 }
-add_action( 'plugins_loaded', array( 'Fb_Oembed_Gist', 'init' ) );
