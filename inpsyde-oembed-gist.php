@@ -74,7 +74,7 @@ class Fb_Oembed_Gist {
 		// $id, $regex, $callback, $priority = 10 
 		wp_embed_register_handler(
 			'gist',
-			'#https://gist.github.com/([a-zA-Z0-9]+)(\#file_(.+))?$#i',
+			'#https://gist.github.com/(?:[a-z0-9-]*/)?([a-z0-9]+)(\#file_(.+))?$#i',
 			array( $this, 'embed_handler_gist' ),
 			10
 		);
