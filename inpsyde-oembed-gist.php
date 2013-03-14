@@ -5,7 +5,7 @@
  * Text Domain: oembed_gist
  * Domain Path: /languages
  * Description: Autoembedding of Gists in WordPress via oEmbed
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      Inpsyde GmbH
  * Author URI:  http://inpsyde.com
  * License:     GPLv3
@@ -19,10 +19,10 @@ add_action( 'plugins_loaded', array( 'Fb_Oembed_Gist', 'init' ) );
  * 
  * Usage:
  * Paste a gist link into a blog post or page and it will be embedded eg:
- * https://gist.github.com/3832632
+ * https://gist.github.com/bueltge/2290887
  *
  * If a gist has multiple files you can select one using a url in the following format:
- * https://gist.github.com/2290887?file=class-fb_backlink_checker.php
+ * https://gist.github.com/bueltge/2290887#file-class_fb_backlink_checker-php
  */
 class Fb_Oembed_Gist {
 	
@@ -35,7 +35,7 @@ class Fb_Oembed_Gist {
 	
 	public static function init() {
 		
-		NULL === self::$classobj and self::$classobj = new self();
+		NULL === self::$classobj && self::$classobj = new self();
 		
 		return self::$classobj;
 	}
@@ -82,7 +82,7 @@ class Fb_Oembed_Gist {
 		// $id, $regex, $callback, $priority = 10 
 		wp_embed_register_handler(
 			'gist',
-			'#https://gist.github.com/(?:[a-z0-9-]*/)?([a-z0-9]+)(\#file_(.+))?$#i',
+			'#https://gist.github.com/(?:[a-z0-9-]*/)?([a-z0-9]+)(\#file-(.+))?$#i',
 			array( $this, 'embed_handler_gist' ),
 			10
 		);
@@ -111,16 +111,29 @@ class Fb_Oembed_Gist {
 		if ( ! isset( $matches[3] ) )
 			$matches[3] = NULL;
 		
+		/**
+		 * Helper ;)
+		 * Full Gist: 	Permalink: https://gist.github.com/Tarendai/3690149 --> 
+		 * 				Embed JS:  https://gist.github.com/Tarendai/3690149.js
+		 * Single File: Permalink: https://gist.github.com/Tarendai/3690149#file-typekit-tinymce-js -->
+		 * 				Embed JS:  https://gist.github.com/Tarendai/3690149.js?file=typekit.tinymce.js
+		 * 
+		 * 0      == URL
+		 * 1 %1$s == 3690149  Gist ID
+		 * 2 %2$s == #file-typekit-tinymce-js  hash + String of File
+		 * 3 %3$s == typekit-tinymce-js  String of file
+		 */
+		
 		$embed = sprintf(
-			'<script type="text/javascript" src="https://gist.github.com/%1$s.js%2$s"></script>' .
-			'<noscript><p>%4$s <a href="https://gist.github.com/%1$s%3$s">Gist</a>.</noscript>',
+			'<script type="text/javascript" src="https://gist.github.com/%1$s.js%3$s"></script>' .
+			'<noscript><p>%4$s <a href="https://gist.github.com/%1$s%2$s">Gist</a>.</p></noscript>',
 			esc_attr( $matches[1] ),
-			'#file_' . esc_attr( $matches[3] ),
-			'?file=' . esc_attr( $matches[3] ),
+			'#file-' . esc_attr( $matches[3] ), // Permalink
+			'?file=' . str_replace( '-', '.', esc_attr( $matches[3] ) ), // embed url
 			self::$noscript_string
 		);
 		
 		return apply_filters( 'embed_gist', $embed, $matches, $attr, $url, $rawattr );
 	}
 	
-}
+} // end class
