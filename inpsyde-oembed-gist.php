@@ -125,6 +125,8 @@ class Fb_Oembed_Gist {
 		 * 1 %1$s == 3690149  Gist ID
 		 * 2 %2$s == #file-typekit-tinymce-js  hash + String of File
 		 * 3 %3$s == typekit-tinymce-js  String of file
+		 *   %4$s == Noscript String
+		 *   %5$s == Link String
 		 */
 		
 		// set right string, if single file was used
