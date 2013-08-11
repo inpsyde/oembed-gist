@@ -5,7 +5,7 @@
  * Text Domain: oembed_gist
  * Domain Path: /languages
  * Description: Autoembedding of Gists in WordPress via oEmbed
- * Version:     1.0.2
+ * Version:     1.0.3
  * Author:      Inpsyde GmbH
  * Author URI:  http://inpsyde.com
  * License:     GPLv3
