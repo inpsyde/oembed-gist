@@ -29,7 +29,9 @@ class Fb_Oembed_Gist {
 	/*
 	 * Var for the string on noscript view
 	 */
-	public static $noscript_string = '';
+	public static    $noscript_string = '';
+	
+	public	static   $link_string = '';
 	
 	protected static $classobj = NULL;
 	
@@ -48,6 +50,7 @@ class Fb_Oembed_Gist {
 	public function __construct() {
 		
 		self::$noscript_string = __( 'View the code on', 'oembed_gist' );
+		self::$link_string = __( 'Gist', 'oembed_gist' );
 		
 		add_action( 'init', array( $this, 'localize_plugin' ) );
 		add_action( 'init', array( $this, 'maybe_load_embed_gist' ) );
@@ -124,14 +127,34 @@ class Fb_Oembed_Gist {
 		 * 3 %3$s == typekit-tinymce-js  String of file
 		 */
 		
-		$embed = sprintf(
-			'<script type="text/javascript" src="https://gist.github.com/%1$s.js%3$s"></script>' .
-			'<noscript><p>%4$s <a href="https://gist.github.com/%1$s%2$s">Gist</a>.</p></noscript>',
-			esc_attr( $matches[1] ),
-			'#file-' . esc_attr( $matches[3] ), // Permalink
-			'?file=' . str_replace( '-', '.', esc_attr( $matches[3] ) ), // embed url
-			self::$noscript_string
-		);
+		// set right string, if single file was used
+		if ( $matches[3] ) {
+			$hash = '#file-' . esc_attr( $matches[3] );
+			$file = '?file=' . str_replace( '-', '.', esc_attr( $matches[3] ) );
+		} else {
+			$hash = $file = '';
+		}
+		
+		// different content on feeds, scripts are not usable on feeds
+		if ( is_feed() )
+			$embed = sprintf(
+				'<p>%4$s <a href="https://gist.github.com/%1$s%2$s">%5$s</a>.</p>',
+				esc_attr( $matches[1] ),
+				$hash, // Permalink
+				$file, // embed url
+				self::$noscript_string,
+				self::$link_string
+			);
+		else
+			$embed = sprintf(
+				'<script type="text/javascript" src="https://gist.github.com/%1$s.js%3$s"></script>' .
+				'<noscript><p>%4$s <a href="https://gist.github.com/%1$s%2$s">%5$s</a>.</p></noscript>',
+				esc_attr( $matches[1] ),
+				$hash, // Permalink
+				$file, // embed url
+				self::$noscript_string,
+				self::$link_string
+			);
 		
 		return apply_filters( 'embed_gist', $embed, $matches, $attr, $url, $rawattr );
 	}
