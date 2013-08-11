@@ -137,24 +137,19 @@ class Fb_Oembed_Gist {
 		
 		// different content on feeds, scripts are not usable on feeds
 		if ( is_feed() )
-			$embed = sprintf(
-				'<p>%4$s <a href="https://gist.github.com/%1$s%2$s">%5$s</a>.</p>',
-				esc_attr( $matches[1] ),
-				$hash, // Permalink
-				$file, // embed url
-				self::$noscript_string,
-				self::$link_string
-			);
+			$content = '<p>%4$s <a href="https://gist.github.com/%1$s%2$s">%5$s</a>.</p>';
 		else
-			$embed = sprintf(
-				'<script type="text/javascript" src="https://gist.github.com/%1$s.js%3$s"></script>' .
-				'<noscript><p>%4$s <a href="https://gist.github.com/%1$s%2$s">%5$s</a>.</p></noscript>',
-				esc_attr( $matches[1] ),
-				$hash, // Permalink
-				$file, // embed url
-				self::$noscript_string,
-				self::$link_string
-			);
+			$content = '<script type="text/javascript" src="https://gist.github.com/%1$s.js%3$s"></script>' .
+				'<noscript><p>%4$s <a href="https://gist.github.com/%1$s%2$s">%5$s</a>.</p></noscript>' ;
+		
+		$embed = sprintf(
+			$content,
+			esc_attr( $matches[1] ),
+			$hash, // Permalink
+			$file, // embed url
+			self::$noscript_string,
+			self::$link_string
+		);
 		
 		return apply_filters( 'embed_gist', $embed, $matches, $attr, $url, $rawattr );
 	}
