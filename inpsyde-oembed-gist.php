@@ -20,7 +20,7 @@ add_action( 'plugins_loaded', array( 'Fb_Oembed_Gist', 'init' ) );
  * Usage:
  * Paste a gist link into a blog post or page and it will be embedded eg:
  * https://gist.github.com/bueltge/2290887
- *
+ * 
  * If a gist has multiple files you can select one using a url in the following format:
  * https://gist.github.com/bueltge/2290887#file-class_fb_backlink_checker-php
  */
@@ -102,8 +102,12 @@ class Fb_Oembed_Gist {
 	 */
 	public function __construct() {
 		
-		self::$noscript_string = __( 'View the code on', 'oembed_gist' );
-		self::$link_string     = __( 'Gist', 'oembed_gist' );
+		// Nothing todo in admin.
+		if ( is_admin() )
+			return;
+		
+		self::$noscript_string = esc_attr__( 'View the code on', 'oembed_gist' );
+		self::$link_string     = esc_attr__( 'Gist', 'oembed_gist' );
 		
 		self::$feed_content = '<p>%4$s <a href="https://gist.github.com/%1$s%2$s">%5$s</a>.</p>';
 		self::$content      = '<script type="text/javascript" src="https://gist.github.com/%1$s.js%3$s"></script>' .
@@ -114,7 +118,7 @@ class Fb_Oembed_Gist {
 	}
 	
 	/**
-	 * Localize_plugin function.
+	 * Localize the plugin.
 	 *
 	 * @uses    load_plugin_textdomain, plugin_basename
 	 * @access  public
@@ -174,8 +178,8 @@ class Fb_Oembed_Gist {
 		$gist      = get_transient( self::$transient_string . '_' . $matches[1] );
 		
 		// For debugging purpose
-		//if ( defined( 'WP_DEBUG' ) && WP_DEBUG )
-		//	$gist = FALSE;
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG )
+			$gist = FALSE;
 		
 		// No gist in Cache
 		if ( empty( $gist ) ) {

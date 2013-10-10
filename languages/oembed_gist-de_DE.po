@@ -1,20 +1,68 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: oEmbed Gist\n"
+"Project-Id-Version: Inpsyde oEmbed Gist v1.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-18 23:42+0100\n"
-"PO-Revision-Date: 2012-10-18 23:42+0100\n"
+"PO-Revision-Date: 2013-10-10 20:09:58+0000\n"
 "Last-Translator: Frank Bueltge <frank@bueltge.de>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;__\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
 "X-Poedit-Basepath: /var/www/wp-plugins/inpsyde-oembed-gist\n"
+"X-Poedit-Bookmarks: \n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
 
-#: inpsyde-oembed-gist.php:42
+#: inpsyde-oembed-gist.php:109
+#@ oembed_gist
 msgid "View the code on"
-msgstr "Lese den Code im "
+msgstr "Lese den Code im"
+
+#. translators: plugin header field 'Name'
+#: inpsyde-oembed-gist.php:0
+#@ oembed_gist
+msgid "Inpsyde oEmbed Gist"
+msgstr ""
+
+#. translators: plugin header field 'PluginURI'
+#: inpsyde-oembed-gist.php:0
+#@ oembed_gist
+msgid "https://github.com/inpsyde/Inpsyde-oEmbed-Gist"
+msgstr ""
+
+#. translators: plugin header field 'Description'
+#: inpsyde-oembed-gist.php:0
+#@ oembed_gist
+msgid "Autoembedding of Gists in WordPress via oEmbed"
+msgstr "Automatische Einbettung von Gists in WordPress via oEmbed"
+
+#. translators: plugin header field 'Author'
+#: inpsyde-oembed-gist.php:0
+#@ oembed_gist
+msgid "Inpsyde GmbH"
+msgstr ""
+
+#. translators: plugin header field 'AuthorURI'
+#: inpsyde-oembed-gist.php:0
+#@ oembed_gist
+msgid "http://inpsyde.com"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: inpsyde-oembed-gist.php:0
+#@ oembed_gist
+msgid "1.0.4"
+msgstr ""
+
+#: inpsyde-oembed-gist.php:110
+#@ oembed_gist
+msgid "Gist"
+msgstr "Gist"
 

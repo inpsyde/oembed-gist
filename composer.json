@@ -2,7 +2,7 @@
     "name": "inpsyde/oembed-gist",
     "description": "Autoembedding of Gists in WordPress via oEmbed",
     "license": "GPL 2+",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "type": "wordpress-plugin",
     "authors": [
         {
