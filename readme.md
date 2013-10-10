@@ -1,5 +1,5 @@
 # oEmbed Gist
-Autoembedding of Gists in WordPress via oEmbed
+Autoembedding of Gists in WordPress via oEmbed with caching. No shortcodes, no bullshit.
 
 ### Usage
 Paste a gist link into a blog post or page and it will be embedded eg:
@@ -8,14 +8,14 @@ Paste a gist link into a blog post or page and it will be embedded eg:
 If a gist has multiple files you can select one using a url in the following format:
 `https://gist.github.com/2290887?file=file_example.php`
 
-You find the links always on the link hash on a gist on each file.
+You find the links always on the link hash on a gist on each file. 
 
 ### Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress
 Have a look at the premium plugins in our [market](http://marketpress.com).
 
 ## Installation
 ### Requirements
-* WordPress version 3.3 and later; current (10/2012) tested with 3.4* and 3.5-beta2
+* WordPress version 3.3 and later; current (10/2012) tested with 3.4* and 3.7-beta1
 * PHP 5.2*
 
 ## Screenshots
@@ -27,12 +27,12 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 
 ## Other Notes
 ### Bugs, technical hints or contribute
-Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/inpsyde/Inpsyde-oEmbed-Gist).
+Please give us feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/inpsyde/Inpsyde-oEmbed-Gist).
 
 ### Authors, Contributors
 [Contributors Stats](https://github.com/inpsyde/Inpsyde-oEmbed-Gist/graphs/contributors)
 
-### Licence
+### License
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog.
 
 ### Translations
