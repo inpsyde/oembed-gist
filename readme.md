@@ -1,6 +1,9 @@
 # oEmbed Gist
 Autoembedding of Gists in WordPress via oEmbed with caching. No shortcodes, no bullshit.
 
+## UNMAINTAINED
+NOTE: This repository is no longer maintained. Because Gutenberg is next level od editing content in WordPress so we mean this plugin is not longer helpful.
+
 ### Usage
 Paste a gist link into a blog post or page and it will be embedded eg:
 `https://gist.github.com/2290887`
